@@ -9,6 +9,7 @@ import os
 app = Flask(__name__)
 CORS(app)
 
+
 # Ensure the logs directory exists
 log_directory = "logs"
 if not os.path.exists(log_directory):
