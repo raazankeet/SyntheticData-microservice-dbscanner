@@ -8,6 +8,7 @@ import os
 
 app = Flask(__name__)
 CORS(app)
+app.json.sort_keys = False
 
 
 # Ensure the logs directory exists
@@ -26,7 +27,7 @@ logger.add(
 # Example of logging a test message
 logger.info("Logger initialized successfully!")
 
-app.json.sort_keys = False
+
 
 # Load config from YAML
 def load_config():
@@ -175,8 +176,11 @@ def get_metadata():
             "child_tables_metadata": [],
             "constraint_details": []
         }
-        logger.info(f"No metadata found for table: {table_name}")
-        return jsonify(response_data), 404
+        logger.warning(f"No metadata found for table: {table_name}")
+        return jsonify({"error": f"Table {table_name} doesn't exist in catalog!"}), 400
+        # return jsonify(response_data), 404
+
+         
 
     # Get the row count for the central table
     total_rows = get_record_count(table_name)
