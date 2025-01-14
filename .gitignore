@@ -1,0 +1,13 @@
+# Ignore appconfig.yml (sensitive config)
+appconfig.yml
+
+# Ignore log files
+logs/
+
+# Ignore Python bytecode files
+*.pyc
+*.pyo
+__pycache__/
+
+# Ignore virtual environment
+venv/
